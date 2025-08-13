@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Routes, Route, Link, useNavigate, Outlet, NavLink as RouterNavLink } from "react-router-dom";
 import { ShoppingCart, Users, RouteIcon, Menu, LayoutDashboard, Cpu, ChevronDown, ChevronRight } from "lucide-react";
 import { Button } from "./Components/ui/button";
-import DashboardPage from "./pages/Dashboard";
+import DashboardPage from "./Pages/Dashboard";
 import Orders from "./Pages/Orders";
 import Drivers from "./Pages/Driver";
 import Routesb from "./Pages/Routesb";
