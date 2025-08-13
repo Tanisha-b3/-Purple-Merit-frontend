@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { Routes, Route, Link, useNavigate, Outlet, NavLink as RouterNavLink } from "react-router-dom";
 import { ShoppingCart, Users, RouteIcon, Menu, LayoutDashboard, Cpu, ChevronDown, ChevronRight } from "lucide-react";
-import { Button } from "./components/ui/button";
+import { Button } from "./Components/ui/button";
 import DashboardPage from "./pages/Dashboard";
 import Orders from "./Pages/Orders";
 import Drivers from "./Pages/Driver";
 import Routesb from "./Pages/Routesb";
 import Simulation from "./Pages/simulations";
-import { Sheet, SheetContent, SheetTrigger } from "./components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger } from "./Components/ui/sheet";
 
 export default function App() {
   const navigate = useNavigate();
