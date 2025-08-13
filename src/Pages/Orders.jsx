@@ -44,12 +44,12 @@ export default function Orders() {
   }, []);
 
   const fetchOrders = async () => {
-    const { data } = await axios.get("http://localhost:5000/orders");
+    const { data } = await axios.get("https://purple-merit-backend-plum.vercel.app/orders");
     setOrders(data);
   };
 
   const fetchRoutes = async () => {
-    const { data } = await axios.get("http://localhost:5000/routes");
+    const { data } = await axios.get("https://purple-merit-backend-plum.vercel.app/routes");
     setRoutes(data);
   };
 
@@ -65,7 +65,7 @@ export default function Orders() {
   };
 
   const handleDelete = async (id) => {
-    await axios.delete(`http://localhost:5000/orders/${id}`);
+    await axios.delete(`https://purple-merit-backend-plum.vercel.app/orders/${id}`);
     fetchOrders();
   };
 
@@ -76,9 +76,9 @@ export default function Orders() {
     };
 
     if (values._id) {
-      await axios.put(`http://localhost:5000/orders/${values._id}`, payload);
+      await axios.put(`https://purple-merit-backend-plum.vercel.app/${values._id}`, payload);
     } else {
-      await axios.post("http://localhost:5000/orders", payload);
+      await axios.post("https://purple-merit-backend-plum.vercel.app/orders", payload);
     }
 
     setOpen(false);

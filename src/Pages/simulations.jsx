@@ -1,5 +1,4 @@
-// pages/Simulation.jsx
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import dayjs from "dayjs";
 import { Card, CardHeader, CardTitle, CardContent } from "../Components/ui/card";
@@ -25,23 +24,31 @@ export default function Simulation() {
   const [error, setError] = useState("");
   const COLORS = ["#0088FE", "#FF8042", "#00C49F", "#FFBB28"];
 
-  const runSimulation = async () => {
+  const lastRunRef = useRef(null); // track last payload
+
+  const runSimulation = async (payloadOverride) => {
     try {
       setError("");
-      const payload = {
-        drivers: formData.drivers,
-        startTime: formData.startTime,
-        maxHours: formData.maxHours,
-      };
+      const payload = payloadOverride || formData;
       const { data } = await axios.post(
-        "http://localhost:5000/api/simulate",
+        "https://purple-merit-backend-plum.vercel.app/api/simulate",
         payload
       );
       setStats(data);
+      lastRunRef.current = payload; // store last params
     } catch (err) {
       setError(err.response?.data?.error || "Simulation failed");
     }
   };
+
+  // Auto-refresh every 10 seconds if we already have params
+  useEffect(() => {
+    if (!lastRunRef.current) return; // only start if simulation has been run
+    const interval = setInterval(() => {
+      runSimulation(lastRunRef.current);
+    }, 10000); // 10 seconds
+    return () => clearInterval(interval);
+  }, [stats]);
 
   return (
     <div className="p-5 space-y-6">
@@ -81,7 +88,7 @@ export default function Simulation() {
           />
         </div>
         <div className="flex items-end">
-          <Button onClick={runSimulation} className="w-full">
+          <Button onClick={() => runSimulation(formData)} className="w-full">
             Run Simulation
           </Button>
         </div>

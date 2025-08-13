@@ -18,7 +18,7 @@ const Dashboard = () => {
       setLoading(true);
       try {
         // In a real app:
-        const { data } = await axios.get('http://localhost:5000/api/stats');
+        const { data } = await axios.get('https://purple-merit-backend-plum.vercel.app/api/stats');
         
         // Mock data with delay to simulate network request
         await new Promise(resolve => setTimeout(resolve, 800));

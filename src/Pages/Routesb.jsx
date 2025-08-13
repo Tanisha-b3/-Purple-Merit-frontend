@@ -69,7 +69,7 @@ export default function Routesb() {
   }, []);
 
   const fetchRoutes = async () => {
-    const { data } = await axios.get("http://localhost:5000/routes");
+    const { data } = await axios.get("https://purple-merit-backend-plum.vercel.app/routes");
     setRoutes(data);
   };
 
@@ -90,19 +90,19 @@ export default function Routesb() {
   };
 
   const handleDelete = async (id) => {
-    await axios.delete(`http://localhost:5000/routes/${id}`);
+    await axios.delete(`https://purple-merit-backend-plum.vercel.app/routes/${id}`);
     fetchRoutes();
   };
 
   const onSubmit = async (values) => {
     if (values._id) {
-      await axios.put(`http://localhost:5000/routes/${values._id}`, {
+      await axios.put(`https://purple-merit-backend-plum.vercel.app/${values._id}`, {
         ...values,
         distanceKm: Number(values.distanceKm),
         baseTimeMin: Number(values.baseTimeMin),
       });
     } else {
-      await axios.post("http://localhost:5000/routes", {
+      await axios.post("https://purple-merit-backend-plum.vercel.app/routes", {
         ...values,
         distanceKm: Number(values.distanceKm),
         baseTimeMin: Number(values.baseTimeMin),

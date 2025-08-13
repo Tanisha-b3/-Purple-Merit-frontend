@@ -25,7 +25,7 @@ export default function Drivers() {
   const fetchDrivers = async () => {
     try {
       setLoading(true);
-      const { data } = await axios.get('http://localhost:5000/api/drivers');
+      const { data } = await axios.get('https://purple-merit-backend-plum.vercel.app/api/drivers');
       setDrivers(data);
     } catch (error) {
       console.error('Error fetching drivers:', error);
@@ -50,7 +50,7 @@ export default function Drivers() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/drivers/${id}`);
+      await axios.delete(`https://purple-merit-backend-plum.vercel.app/api/drivers/${id}`);
       toast({ title: 'Success', description: 'Driver deleted successfully' });
       fetchDrivers();
     } catch (error) {
@@ -76,10 +76,10 @@ export default function Drivers() {
       setLoading(true);
 
       if (processedValues._id) {
-        await axios.put(`http://localhost:5000/api/drivers/${processedValues._id}`, processedValues);
+        await axios.put(`https://purple-merit-backend-plum.vercel.app/api/drivers/${processedValues._id}`, processedValues);
         toast({ title: 'Success', description: 'Driver updated successfully' });
       } else {
-        await axios.post('http://localhost:5000/api/drivers', processedValues);
+        await axios.post('https://purple-merit-backend-plum.vercel.app/api/drivers', processedValues);
         toast({ title: 'Success', description: 'Driver added successfully' });
       }
 
